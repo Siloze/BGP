@@ -1,11 +1,11 @@
 build:
-	sudo docker build -t bgpd .
+	sudo docker build -t busy .
 
 run:
-	sudo docker run -d --name bgpd bgpd
+	sudo docker run -d --name busy busy
 
 exec:
-	sudo docker exec -it bgpd /bin/bash
+	sudo docker exec -it busy /bin/bash
 
 all: build run exec
 
