@@ -1,3 +1,6 @@
 #!/bin/bash
 
-mkdir -p /home/$USER/Desktop/shared && sudo mount -t 9p -o trans=virtio share /home/$USER/Desktop/shared -oversion=9p2000.L
+# $1: folder name
+# $2: mounting dest
+
+mkdir -p $2 && sudo mount -t vboxsf $1 $2

@@ -1,11 +1,12 @@
 #!/bin/bash
 
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt install -y vim make
 
 #   ----- DOCKER INSTALLATION (https://docs.docker.com/engine/install/ubuntu/)
 
-
 # DOCKER GPG KEY
-sudo apt-get update
 sudo apt-get install -y ca-certificates curl gnupg
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -18,28 +19,18 @@ sudo apt-get update
 
 # DOCKER PACKAGE
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-
-#   ----- GNS3 INSTALLATION (https://smnet.fr/buster/buster-6.html)
-
-
-# DEPENDENCIES
-sudo apt-get install -y libssl-dev libbz2-dev qtbase5-dev libqt5svg5-dev elfutils \
-libelf-dev libpcap-dev cmake python3-qtpy python3-pip python3-tk sgabios \
-python3-pyqt5.qtwebsockets cpulimit git tigervnc-standalone-server
-
-# GNS3
-sudo pip3 install gns3-server
-sudo pip3 install gns3-gui
-sudo update-mime-database /usr/local/share/mime/
-sudo update-desktop-database /usr/local/share/applications/
 sudo usermod -aG docker $USER
 
-# UBRIDGE
-cd /usr/local/src
-sudo git clone https://github.com/GNS3/ubridge.git
-cd ubridge
-sudo make
-sudo make install
+#   ----- GNS3 INSTALLATION (https://docs.gns3.com/docs/getting-started/installation/linux/)
+
+# GNS3 INSTALL
+sudo add-apt-repository ppa:gns3/ppa
+sudo apt update                                
+sudo apt install -y gns3-gui gns3-server
+
+# IOU SUPPORT
+sudo dpkg --add-architecture i386
+sudo apt update
+sudo apt install -y gns3-iou
 
 reboot
