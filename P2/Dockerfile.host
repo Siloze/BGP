@@ -1,7 +1,8 @@
 FROM    alpine:latest
 
-COPY    ./conf/host.sh /conf/ip.sh
+COPY    ./conf/host.sh /conf/Makefile
 
 #       INSTALL BUSYBOX
 RUN     apk update && \
+        apk add make && \
         apk add util-linux
