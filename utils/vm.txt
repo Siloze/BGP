@@ -6,6 +6,4 @@
 
 4. /media/$USER/VBox.../VBoxLinuxAdditions.run && reboot
 
-5. ./mount.sh
-
-6. ../P1/initVm.sh
+5. ./mount.sh && ../P1/initVm.sh

@@ -1,4 +1,6 @@
-from    alpine:latest
+FROM    alpine:latest
+
+COPY    ./conf/host.sh /conf/ip.sh
 
 #       INSTALL BUSYBOX
 RUN     apk update && \

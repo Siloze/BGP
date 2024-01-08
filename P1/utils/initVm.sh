@@ -19,7 +19,6 @@ sudo apt-get update
 
 # DOCKER PACKAGE
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo usermod -aG docker $USER
 
 #   ----- GNS3 INSTALLATION (https://docs.gns3.com/docs/getting-started/installation/linux/)
 
@@ -33,4 +32,6 @@ sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt install -y gns3-iou
 
+sudo usermod -aG docker $USER
+sudo usermod -aG wireshark $USER
 reboot
