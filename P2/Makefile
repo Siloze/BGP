@@ -1,6 +1,6 @@
 build: 
-	sudo docker build -t frr -f Dockerfile.router .
-	sudo docker build -t busy -f Dockerfile.host .
+	sudo docker build -t host -f Dockerfile.router .
+	sudo docker build -t router -f Dockerfile.host .
 
 clean:
 	sudo docker system prune -af
@@ -10,7 +10,11 @@ router1:
 	ip link add br0 type bridge
 	ip link set dev br0 up
 	ip addr add 10.1.1.1/24 dev eth0
-	ip link add name vxlan10 type vxlan id 10 dev eth0 remote 10.1.1.2/24 local 10.1.1.1/24 dstport 4789
+	ip link add name vxlan10 type vxlan id 10 \
+		dev eth0 \
+		remote 10.1.1.2/24 \
+		local 10.1.1.1/24 \
+		dstport 4789
 	ip addr add 20.1.1.1/24 dev vxlan10
 	brctl addif br0 eth1
 	brctl addif br0 vxlan10
@@ -20,7 +24,11 @@ router2:
 	ip link add br0 type bridge
 	ip link set dev br0 up
 	ip addr add 10.1.1.2/24 dev eth0
-	ip link add name vxlan10 type vxlan id 10 dev eth0 remote 10.1.1.1/24 local 10.1.1.2/24 dstport 4789
+	ip link add name vxlan10 type vxlan id 10 \
+		dev eth0 \
+		remote 10.1.1.1/24 \
+		local 10.1.1.2/24 \
+		dstport 4789
 	ip addr add 20.1.1.2/24 dev vxlan10
 	brctl addif br0 eth1
 	brctl addif br0 vxlan10

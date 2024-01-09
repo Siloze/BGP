@@ -11,7 +11,7 @@ init:
 	sudo apt-get update
 	sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 	sudo add-apt-repository ppa:gns3/ppa
-	sudo apt update                                
+	sudo apt update          
 	sudo apt install -y gns3-gui gns3-server
 	sudo dpkg --add-architecture i386
 	sudo apt update
