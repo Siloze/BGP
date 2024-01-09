@@ -1,0 +1,217 @@
+host1: 
+
+/tmp # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+15: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel qlen 1000
+    link/ether 02:89:4c:8c:64:eb brd ff:ff:ff:ff:ff:ff
+    inet 30.1.1.1/24 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::89:4cff:fe8c:64eb/64 scope link 
+       valid_lft forever preferred_lft forever
+/tmp # ifconfig
+eth0      Link encap:Ethernet  HWaddr 02:89:4C:8C:64:EB  
+          inet addr:30.1.1.1  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::89:4cff:fe8c:64eb/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:19 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:26 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:1554 (1.5 KiB)  TX bytes:2140 (2.0 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+
+host2: 
+
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+14: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel qlen 1000
+    link/ether 92:2a:11:ea:8f:ed brd ff:ff:ff:ff:ff:ff
+    inet 30.1.1.2/24 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::902a:11ff:feea:8fed/64 scope link 
+       valid_lft forever preferred_lft forever
+/ # ifconfig
+eth0      Link encap:Ethernet  HWaddr 92:2A:11:EA:8F:ED  
+          inet addr:30.1.1.2  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::902a:11ff:feea:8fed/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:80 errors:0 dropped:1 overruns:0 frame:0
+          TX packets:43 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:6524 (6.3 KiB)  TX bytes:2910 (2.8 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:13 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:13 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:1456 (1.4 KiB)  TX bytes:1456 (1.4 KiB)
+
+---------------------------------------------------------------------------
+
+Router 1:
+
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: vxlan10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue master br0 qlen 1000
+    link/ether 72:6d:b5:4e:d1:13 brd ff:ff:ff:ff:ff:ff
+    inet 20.1.1.1/24 scope global vxlan10
+       valid_lft forever preferred_lft forever
+    inet6 fe80::706d:b5ff:fe4e:d113/64 scope link 
+       valid_lft forever preferred_lft forever
+3: br0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue qlen 1000
+    link/ether 4e:cc:6b:35:19:57 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::a88b:afff:fee1:4292/64 scope link 
+       valid_lft forever preferred_lft forever
+10: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel qlen 1000
+    link/ether 36:ad:3c:e4:c9:20 brd ff:ff:ff:ff:ff:ff
+    inet 10.1.1.1/24 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::34ad:3cff:fee4:c920/64 scope link 
+       valid_lft forever preferred_lft forever
+13: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel master br0 qlen 1000
+    link/ether 4e:cc:6b:35:19:57 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::4ccc:6bff:fe35:1957/64 scope link 
+       valid_lft forever preferred_lft forever
+/ # ifconfig
+br0       Link encap:Ethernet  HWaddr 4E:CC:6B:35:19:57  
+          inet6 addr: fe80::a88b:afff:fee1:4292/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1450  Metric:1
+          RX packets:53 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:15 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:2828 (2.7 KiB)  TX bytes:1306 (1.2 KiB)
+
+eth0      Link encap:Ethernet  HWaddr 36:AD:3C:E4:C9:20  
+          inet addr:10.1.1.1  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::34ad:3cff:fee4:c920/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:73 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:71 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:7998 (7.8 KiB)  TX bytes:8354 (8.1 KiB)
+
+eth1      Link encap:Ethernet  HWaddr 4E:CC:6B:35:19:57  
+          inet6 addr: fe80::4ccc:6bff:fe35:1957/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:26 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:83 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:2140 (2.0 KiB)  TX bytes:6178 (6.0 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+vxlan10   Link encap:Ethernet  HWaddr 72:6D:B5:4E:D1:13  
+          inet addr:20.1.1.1  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::706d:b5ff:fe4e:d113/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1450  Metric:1
+          RX packets:54 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:54 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:3040 (2.9 KiB)  TX bytes:3696 (3.6 KiB)
+
+
+router 2:
+
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: vxlan10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue master br0 qlen 1000
+    link/ether e2:dd:41:fc:3c:c7 brd ff:ff:ff:ff:ff:ff
+    inet 20.1.1.2/24 scope global vxlan10
+       valid_lft forever preferred_lft forever
+    inet6 fe80::e0dd:41ff:fefc:3cc7/64 scope link 
+       valid_lft forever preferred_lft forever
+3: br0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue qlen 1000
+    link/ether 2e:24:0e:3c:93:a6 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::c81c:16ff:fef3:26b1/64 scope link 
+       valid_lft forever preferred_lft forever
+9: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel qlen 1000
+    link/ether 7a:bc:66:d5:2e:08 brd ff:ff:ff:ff:ff:ff
+    inet 10.1.1.2/24 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::78bc:66ff:fed5:2e08/64 scope link 
+       valid_lft forever preferred_lft forever
+12: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel master br0 qlen 1000
+    link/ether 2e:24:0e:3c:93:a6 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::2c24:eff:fe3c:93a6/64 scope link 
+       valid_lft forever preferred_lft forever
+/ # ifconfig
+br0       Link encap:Ethernet  HWaddr 2E:24:0E:3C:93:A6  
+          inet6 addr: fe80::c81c:16ff:fef3:26b1/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1450  Metric:1
+          RX packets:57 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:13 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:3192 (3.1 KiB)  TX bytes:1086 (1.0 KiB)
+
+eth0      Link encap:Ethernet  HWaddr 7A:BC:66:D5:2E:08  
+          inet addr:10.1.1.2  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::78bc:66ff:fed5:2e08/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:71 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:73 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:8354 (8.1 KiB)  TX bytes:7998 (7.8 KiB)
+
+eth1      Link encap:Ethernet  HWaddr 2E:24:0E:3C:93:A6  
+          inet6 addr: fe80::2c24:eff:fe3c:93a6/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:43 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:81 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:2910 (2.8 KiB)  TX bytes:6614 (6.4 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+vxlan10   Link encap:Ethernet  HWaddr E2:DD:41:FC:3C:C7  
+          inet addr:20.1.1.2  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::e0dd:41ff:fefc:3cc7/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1450  Metric:1
+          RX packets:54 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:56 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:3696 (3.6 KiB)  TX bytes:3212 (3.1 KiB)
