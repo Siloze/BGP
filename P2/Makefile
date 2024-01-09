@@ -1,11 +1,3 @@
-build: 
-	sudo docker build -t host -f Dockerfile.router .
-	sudo docker build -t router -f Dockerfile.host .
-
-clean:
-	sudo docker system prune -af
-	sudo docker rm -f $$(docker ps -aq)
-
 router1:
 	ip link add br0 type bridge
 	ip link set dev br0 up
@@ -40,4 +32,4 @@ host1:
 host2:
 	ip addr add 30.1.1.2 dev eth0
 
-.PHONY: build clean router1 router2 host1 host2
+.PHONY: router1 router2 host1 host2

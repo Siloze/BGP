@@ -1,5 +1,8 @@
 FROM	frrouting/frr:latest
 
+COPY    ../P2/Makefile /Makefile
+COPY    ../P2/router.sh /ipconfig.sh
+
 #       INSTALL MAKE
 RUN     apk add make
 #       CONFIGURE FRR

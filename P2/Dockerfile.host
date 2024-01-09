@@ -1,8 +1,0 @@
-FROM    alpine:latest
-
-COPY    ./Makefile /conf/Makefile
-
-#       INSTALL BUSYBOX
-RUN     apk update && \
-        apk add make && \
-        apk add util-linux
